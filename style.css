@@ -1,0 +1,647 @@
+/* =====================================================
+   JESSA MAE | STUDENT IT PORTFOLIO
+   Table of contents:
+   1. Variables (colors, easy to change)
+   2. Reset & base
+   3. Shared styles (container, buttons, section titles)
+   4. Navigation
+   5. Home
+   6. About
+   7. Services
+   8. Portfolio
+   9. Contact
+   10. Footer
+   11. Responsive (tablet & mobile)
+   ===================================================== */
+
+
+/* ================= 1. VARIABLES ================= */
+
+:root {
+    --bg: #0e0e10;            /* main dark background */
+    --bg-alt: #151518;        /* slightly lighter sections */
+    --card: #1c1c20;          /* card background */
+    --border: #2d2d33;        /* subtle borders */
+    --accent: #ff5a1f;        /* orange accent */
+    --accent-dark: #e04a12;   /* orange on hover */
+    --text: #ffffff;          /* headings */
+    --text-muted: #c4c4cc;    /* light-gray body text */
+
+    --radius: 14px;
+    --header-height: 64px;
+    --footer-height: 56px;
+}
+/* ================= 2. RESET & BASE ================= */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y proximity;   /* gently snaps each section into view */
+}
+
+body {
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    background: var(--bg);
+    color: var(--text);
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Keyboard focus outline (good for accessibility) */
+a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+
+/* ================= 3. SHARED STYLES ================= */
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.section,
+.home {
+    /* Each section fills exactly one screen (below the sticky header) */
+    min-height: calc(100vh - var(--header-height));
+    min-height: calc(100dvh - var(--header-height));
+    padding: 32px 0;
+    display: flex;
+    align-items: center;               /* centers the content vertically */
+    scroll-snap-align: start;
+    scroll-margin-top: var(--header-height);  /* keeps titles below the sticky header */
+}
+
+/* Contact is the last screen, so leave room for the footer */
+#contact {
+    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+    min-height: calc(100dvh - var(--header-height) - var(--footer-height));
+}
+
+.section-alt {
+    background: var(--bg-alt);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    line-height: 1.2;
+}
+
+.section-title span,
+.home-text h1 span {
+    color: var(--accent);
+}
+
+.line {
+    width: 56px;
+    height: 4px;
+    margin: 12px auto 28px;
+    border-radius: 2px;
+    background: var(--accent);
+}
+
+.section-intro {
+    max-width: 640px;
+    margin: -8px auto 28px;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+/* Orange button */
+.button {
+    display: inline-block;
+    padding: 12px 32px;
+    background: var(--accent);
+    color: var(--text);
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.button:hover {
+    background: var(--accent-dark);
+    transform: translateY(-2px);
+}
+
+.button-small {
+    padding: 8px 22px;
+    font-size: 0.9rem;
+}
+
+/* Round icon box used in services and contact */
+.icon {
+    width: 46px;
+    height: 46px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgba(255, 90, 31, 0.12);
+    color: var(--accent);
+    font-size: 1.3rem;
+}
+
+
+/* ================= 4. NAVIGATION ================= */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    min-height: var(--header-height);
+    padding: 0 max(24px, 6%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(14, 14, 16, 0.95);
+    border-bottom: 1px solid var(--border);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.logo span {
+    color: var(--text);
+}
+
+.nav {
+    display: flex;
+    gap: 6px;
+}
+
+.nav a {
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.nav a:hover {
+    color: var(--accent);
+    background: rgba(255, 90, 31, 0.1);
+}
+
+
+/* ================= 5. HOME ================= */
+
+.home-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+}
+
+.home-text {
+    flex: 1;
+    max-width: 580px;
+}
+
+.hello {
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.home-text h1 {
+    margin-bottom: 12px;
+    font-size: 2.75rem;
+    line-height: 1.15;
+}
+
+.home-text h2 {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--accent);
+}
+
+.description {
+    margin-bottom: 28px;
+    color: var(--text-muted);
+}
+
+/* Social icons */
+.social {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.social a {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--accent);
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.social a:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--text);
+}
+
+/* Profile image */
+.profile img {
+    width: min(340px, 46vh);          /* shrinks on short screens */
+    height: min(340px, 46vh);
+    object-fit: cover;
+    object-position: center 30%;   /* keeps the face centered in the circle */
+    border-radius: 50%;
+    border: 4px solid var(--accent);
+    box-shadow: 0 10px 40px rgba(255, 90, 31, 0.25);
+}
+
+
+/* ================= 6. ABOUT ================= */
+
+.about-content {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-content h3 {
+    margin-bottom: 20px;
+    font-size: 1.15rem;
+    color: var(--accent);
+}
+
+.about-content p {
+    margin-bottom: 16px;
+    line-height: 1.8;
+    color: var(--text-muted);
+}
+
+.about-content .button {
+    margin-top: 12px;
+}
+
+
+/* ================= 7. SERVICES ================= */
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.service-card {
+    padding: 22px 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.service-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+}
+
+.service-card h3 {
+    margin-bottom: 8px;
+    font-size: 1.05rem;
+}
+
+.service-card p {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+}
+
+
+/* ================= 8. PORTFOLIO ================= */
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.project-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+}
+
+/* Placeholder area - replace the icon with <img src="your-image.png" alt="..."> later */
+.project-thumb {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #232328;
+    color: var(--accent);
+    font-size: 2.2rem;
+}
+
+.project-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.project-body {
+    flex: 1;                       /* makes all cards the same height */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.project-body h3 {
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.project-body p {
+    margin-bottom: 12px;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.tags li {
+    padding: 4px 12px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 0.8rem;
+    color: var(--accent);
+}
+
+.project-body .button {
+    margin-top: auto;              /* keeps the button at the bottom of every card */
+}
+
+
+/* ================= 9. CONTACT ================= */
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.contact-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 20px;
+    text-align: center;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: border-color 0.2s ease;
+}
+
+.contact-card:hover {
+    border-color: var(--accent);
+}
+
+.contact-card h3 {
+    margin-bottom: 6px;
+    font-size: 1.05rem;
+}
+
+.contact-card a,
+.contact-card p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    overflow-wrap: anywhere;       /* stops long emails from overflowing on small screens */
+}
+
+.contact-card a:hover {
+    color: var(--accent);
+}
+
+
+/* ================= 10. FOOTER ================= */
+
+.footer {
+    height: var(--footer-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 24px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+}
+
+
+
+
+
+/* ================= 11. RESPONSIVE ================= */
+
+
+
+/* Laptop / small desktop */
+@media (max-width: 1024px) {
+
+    .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .project-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+/* Tablet and mobile */
+@media (max-width: 768px) {
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    /* Navigation: logo on top, links below, compact height */
+    .header {
+        flex-direction: column;
+        padding: 10px 16px;
+        gap: 4px;
+    }
+
+    .logo {
+        font-size: 1.25rem;
+    }
+
+    .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2px;
+    }
+
+    .nav a {
+        padding: 6px 10px;
+        font-size: 0.88rem;
+    }
+
+    .section,
+    .home {
+        scroll-margin-top: 100px;
+        padding: 40px 0;
+    }
+
+    #contact {
+        min-height: auto;           /* phones: let the content decide the height */
+    }
+
+    /* Home: text on top, image below */
+
+    .home-inner {
+        flex-direction: column;
+        gap: 32px;
+        text-align: center;
+    }
+
+    .home-text {
+        max-width: 100%;
+    }
+
+    .home-text h1 {
+        font-size: 2.1rem;
+    }
+
+    .home-text h2 {
+        font-size: 1.05rem;
+    }
+
+    .social {
+        justify-content: center;
+    }
+
+    .profile img {
+        width: min(220px, 32vh);
+        height: min(220px, 32vh);
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Mobile phones: one column for cards */
+@media (max-width: 600px) {
+
+    .service-grid,
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .button {
+        padding: 12px 28px;      /* easy to tap */
+    }
+}
+
+
+/* Short laptop screens (about 700px tall or less): tighten spacing so each section still fits */
+@media (min-width: 769px) and (max-height: 760px) {
+
+    .section,
+    .home {
+        padding: 20px 0;
+    }
+
+    .section-title {
+        font-size: 1.75rem;
+    }
+
+    .line {
+        margin: 10px auto 20px;
+    }
+
+    .section-intro {
+        margin-bottom: 20px;
+    }
+
+    .home-text h1 {
+        font-size: 2.3rem;
+    }
+
+    .description {
+        margin-bottom: 20px;
+    }
+
+    .social {
+        margin-top: 20px;
+    }
+
+    .service-card {
+        padding: 16px;
+    }
+
+    .service-card .icon {
+        width: 38px;
+        height: 38px;
+        margin-bottom: 8px;
+        font-size: 1.1rem;
+    }
+
+    .service-card p,
+    .project-body p {
+        font-size: 0.85rem;
+    }
+
+    .project-thumb {
+        height: 70px;
+    }
+
+    .project-body {
+        padding: 16px;
+    }
+}
